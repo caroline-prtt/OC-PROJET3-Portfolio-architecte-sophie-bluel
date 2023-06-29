@@ -23,6 +23,7 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
@@ -46,7 +47,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
 /** end reset css**/
+
 body {
 	max-width: 1140px;
 	margin:auto;
@@ -54,11 +57,13 @@ body {
 	font-size: 14px;
 	background-color: rgb(255,254,249);
 }
+
 header {
 	display: flex;
 	justify-content: space-between;
 	margin: 50px 0
 }
+
 section {
 	margin: 50px 0
 }
@@ -122,10 +127,37 @@ li:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
+
+/* SECTION PORTFOLIO */
+
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
 }
+
+.filters{
+	display: flex;
+	justify-content: center;
+	font-family: 'Syne';
+	/* pas d'info sur les valeurs suivantes dans les maquettes */
+	gap: 20px;
+	font-size: 20px;
+	margin-bottom: 40px;
+	color: #1D6154;
+}
+
+.filters div{
+	border: 1px solid #1D6154;
+	border-radius: 60px;
+	/* pas d'info sur les valeurs suivantes dans les maquettes */
+	padding: 9px 15px;
+}
+
+.filters div:hover{
+	background-color: #1D6154;
+	color: white;
+}
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -138,6 +170,9 @@ li:hover {
 	width: 100%;
 
 }
+
+/* SECTION CONTACT */
+
 #contact {
 	width: 50%;
 margin: auto;
