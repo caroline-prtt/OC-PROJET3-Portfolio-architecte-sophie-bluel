@@ -8,7 +8,7 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
-		<meta name="description" content="">
+		<meta name="description" content="Page de connexion - Site architecte d'intérieur Sophie Bluel">
         <link rel="stylesheet" href="./assets/style.css">
         <script src="scripts/login.js" defer></script>
     </head>
@@ -16,7 +16,9 @@
     <body>
 
         <header>
-			<h1>Sophie Bluel <span>ARCHITECTE D'INTÉRIEUR</span></h1>
+			<a href="index.html">
+                <h1>Sophie Bluel <span>ARCHITECTE D'INTÉRIEUR</span></h1>
+            </a>
 			<nav>
 				<ul>
 					<li><a href="index.html#portfolio">projets</a></li>
@@ -35,9 +37,9 @@
 
                 <form action="#" method="post">
 					<label for="email">E-mail</label>
-					<input type="email" name="email" id="email">
+					<input type="email" name="email" id="email" required>
 					<label for="password">Mot de passe</label>
-                    <input type="password" name="password" id="password">
+                    <input type="password" name="password" id="password" required>
 					<input type="submit" value="Se connecter">
                 </form>
 
