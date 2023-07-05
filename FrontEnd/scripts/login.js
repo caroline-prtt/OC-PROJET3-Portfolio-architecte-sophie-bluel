@@ -1,11 +1,21 @@
 
-// Récupère les valeurs du formulaire Login:
+// On récupère la balise form
 
-let email = document.getElementById("email").value;
-let password = document.getElementById("password").value;
+let formLogIn = document.getElementById("formLogIn");
 
-console.log(email);
-console.log(password);
+// On gère l'évènement submit du formulaire LogIn
+
+formLogIn.addEventListener("submit", (event) => {
+    // On commence par supprimer le comportement par défaut (raffraichit la page)
+    event.preventDefault();
+    // Récupère les valeurs inscrites dans le formulaire Login:
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    console.log(email);
+    console.log(password);
+})
+
 
 
 
