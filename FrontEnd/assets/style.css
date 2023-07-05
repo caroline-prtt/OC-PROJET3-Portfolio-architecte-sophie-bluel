@@ -269,6 +269,7 @@ footer nav ul {
 	flex-direction: column;
 	width: 380px;
 	margin: auto;
+	padding-top: 100px;
 }
 
 #login h2{
