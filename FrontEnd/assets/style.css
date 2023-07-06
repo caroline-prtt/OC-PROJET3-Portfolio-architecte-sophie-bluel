@@ -307,3 +307,26 @@ footer nav ul {
 	color: black;
 	margin-bottom: 5em;
 }
+
+/* MESSAGE ERREUR LOGIN */
+
+/* la balise <div> a par défaut la class=errorLogIn */
+
+.errorLogIn {
+	display: none;
+}
+
+/* Modification de la class de la div avec JavaScript
+lors d'une erreur de connexion
+désormais class=errorLogInMessage */
+.errorLogInMessage{
+	height: 30px;
+	margin-top: 39px;
+	border: 2px solid red;
+	border-radius: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: red;
+}
+	
