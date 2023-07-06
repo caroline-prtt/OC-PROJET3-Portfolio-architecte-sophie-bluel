@@ -90,3 +90,11 @@ async function gallery() {
 // Puis appel de la fonction Portfolio pour générer le code qu'elle contient
 gallery();
 
+
+// ***************************************************************
+// RÉCUPÉRATION APRÈS CONNEXION DU TOKEN PAR BIAIS SESSION STORAGE 
+// ***************************************************************
+
+const token = sessionStorage.getItem("token");
+
+console.log(token);
