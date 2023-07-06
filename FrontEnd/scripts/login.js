@@ -1,4 +1,3 @@
-
 // On récupère la balise form
 
 let formLogIn = document.getElementById("formLogIn");
@@ -21,15 +20,33 @@ formLogIn.addEventListener("submit", (event) => {
 
 /* 
 
+1_ création du formulaire LogIn HTML
 
-async{
-    
-    1- faire requete fetch: post/User
-        method
-        body
-        headers
-   
-    2- créer condition :
+2_ ajouter l'eventListener sur l'événement "submit" de la balise form 
+    > penser a supprimer le comportement par défaut de submit
+
+3_ Créer la charge utile de la requête : 
+    const users = {
+        "email":   ,
+        "passeword"
+    }
+
+4_ Convertir l'objet au format JSON avec JSON.strigify();
+
+5_ Faire la requête à l'API
+
+async function LogIn() {
+
+    par exemple fetch("http://localhost:5678/api/users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: '{
+  "email": "string",
+  "password": "string"
+}'
+});
+
+   créer condition :
     if (email==="sophie@"" && password ==="") {
         - renvoi page accueil administrateur)
     }
@@ -38,6 +55,6 @@ async{
     }
     
     
-voir question localStorage
+voir question localStorage et token
 
     */
