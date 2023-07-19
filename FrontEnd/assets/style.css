@@ -358,3 +358,29 @@ désormais class=errorLogInMessage */
 /* -------------------------------------- */
 /* -------- PAGE ADMINISTRATEUR --------- */
 /* -------------------------------------- */
+
+/* BARRE DE MENU ÉDITION */
+
+.menu-edition{
+	width: 100%;
+	height: 59px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 21px;
+	background-color: black;
+	color: white;
+}
+
+.edition{
+	display: flex;
+	gap: 10px;
+}
+
+.publication{
+	padding: 11px 23px;
+	background-color: white;
+	color: black;
+	border-radius: 60px;
+}
+

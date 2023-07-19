@@ -91,10 +91,11 @@ async function gallery() {
 gallery();
 
 
+
 // ***************************************************************
 // RÉCUPÉRATION APRÈS CONNEXION DU TOKEN PAR BIAIS SESSION STORAGE 
-// ***************************************************************
 
-const token = sessionStorage.getItem("token");
+// >>> Finalement intégrée dans le fichier admin.js
 
-console.log(token);
+        // const token = sessionStorage.getItem("token");
+        // console.log(token);
