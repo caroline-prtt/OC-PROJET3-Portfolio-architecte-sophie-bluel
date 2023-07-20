@@ -1,13 +1,15 @@
-// Fonction async qui englobe tout le code qui dépend de la requête GET/works de l'API
+// FONCTION REQUETE API : récupération des travaux et conversion JSON
+// *********************
 
 async function getData(){
     const reponse = await fetch("http://localhost:5678/api/works");
     const data = reponse.json();
-    console.log(data);
     return data;
 }
 
-getData();
+
+// FONCTION POUR L'AFFICHAGE DES TRAVAUX SUR LA PAGE
+// *************************************************
 
 function displayWorks (works){
 
@@ -35,78 +37,55 @@ function displayWorks (works){
 }
 
 
-async function gallery() {
+// FONCTION GÉNÉRALE DE FILTRAGE DES TRAVAUX SELON CATEGORIE
+// *********************************************************
 
-    // REQUETE API : GET/WORKS
-    // ***********************
+function filteringWorks(buttonSelector, numcategoryId) {
 
-    const works = await getData();
-    
-    // FONCTION COMPRENANT LA BOUCLE QUI GÉNÈRE LES PROJETS
-    // *********************************************************
+    // selectionne l'élément du DOM
+    const filterButton = document.querySelector(buttonSelector);
 
-    
-
-    displayWorks(works);  // appel de la fonction genereWorks pour exécuter son contenu
-
-    // RÉALISATION DES FILTRES D'AFFICHAGE
-    // ***********************************
-
-    // Filtre objets
-
-    const filterObjets = document.querySelector("#filter-objets");
-    filterObjets.addEventListener("click", function() {
-        const worksObjets = works.filter(function(work){
-            return work.categoryId == 1;
+    // Géstion de l'événement lors du click sur bouton filtre
+    filterButton.addEventListener("click", async function () {
+        const works = await getData();
+        // constante ne retourtant que les travaux avec le numCatégoryID correspondant
+        const filteredWorks = works.filter(function (work) {
+            return work.categoryId === numcategoryId;
         });
+        // Permet d'effacer les travaux précédemment affichés
         document.querySelector(".gallery").innerHTML = "";
-        displayWorks(worksObjets);
+        // Puis on affiche uniquement les travaux filtrés
+        displayWorks(filteredWorks);
     });
-
-    // Filtre appartements
-
-    const filterAppartements = document.querySelector("#filter-appartements");
-    filterAppartements.addEventListener("click", function() {
-        const worksAppartements = works.filter(function(work){
-            return work.categoryId == 2;
-        });
-        document.querySelector(".gallery").innerHTML = "";
-        displayWorks(worksAppartements);
-    });
-
-    // Filtre hotels & restaurants
-
-    const filterHotels = document.querySelector("#filter-hotels");
-    filterHotels.addEventListener("click", function() {
-        const worksHotels = works.filter(function(work){
-            return work.categoryId == 3;
-        });
-        document.querySelector(".gallery").innerHTML = "";
-        displayWorks(worksHotels);
-    });
-
-    // Filtre tous
-
-    const filterTous = document.querySelector("#filter-tous");
-
-    filterTous.addEventListener("click",function(){
-        const worksTous = works.filter(function(work){
-            document.querySelector(".gallery").innerHTML = "";
-            displayWorks(works);
-        })
-    });
-
 }
 
-// Puis appel de la fonction Portfolio pour générer le code qu'elle contient
-gallery();
 
+// FONCTION POUR GÉNÉRER LES TRAVAUX PAR DÉFAUT ET LES TRAVAUX FILTRÉS
+// *******************************************************************
 
+// 1 - Déclaration de la fonction
 
-// ***************************************************************
-// RÉCUPÉRATION APRÈS CONNEXION DU TOKEN PAR BIAIS SESSION STORAGE 
+async function portfolio() {
 
-// >>> Finalement intégrée dans le fichier admin.js
+    // Stocke les datas
+    const works = await getData();
 
-        // const token = sessionStorage.getItem("token");
-        // console.log(token);
+    // Par défaut, affiche initialement l'ensemble des travaux
+    displayWorks(works);
+
+    // Filtrage des travaux lors du "click" pour chaque filtre
+    filteringWorks("#filter-objets", 1); // Filtre objets
+    filteringWorks("#filter-appartements", 2); // Filtre appartements
+    filteringWorks("#filter-hotels", 3); // Filtre hotels & restaurants
+
+    // Filtre tous
+    const filterTous = document.querySelector("#filter-tous");
+    filterTous.addEventListener("click", function () {
+      document.querySelector(".gallery").innerHTML = "";
+      displayWorks(works); // Afficher tous les travaux lorsque "Tous" est cliqué
+    });
+}
+
+// 2- Appel de la fonction
+
+portfolio();
