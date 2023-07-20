@@ -17,16 +17,20 @@
 
 	<body>
 
-		<div class="wait-connexion">
-			<div class="edition">
+		<!-- Barre d'édition visible après connexion -->
+
+		<div class="hidden-bar-edit">
+			<div class="mode-edition">
 				<i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i>
 				<p>Mode édition</p>
 			</div>
-			<div class="publication">
+			<div class="button-publication">
 				<p>publier les changements </p>
 			</div>
 		</div>
 		
+		<!-- En-tête et menu de navigation -->
+
 		<header>
 			<h1>Sophie Bluel <span>ARCHITECTE D'INTÉRIEUR</span></h1>
 			<nav>
@@ -52,10 +56,23 @@
 					<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
 				</article>
 			</section>
+			
+			<!-- Bouton "modifier" visible après connexion -->
+			<div class="hidden-edit-button-intro">
+				<i class="fa-regular fa-pen-to-square" style="color: #000000;"></i>
+				<p>modifier</p>
+			</div>
 
 			<section id="portfolio">
 
-				<h2>Mes Projets</h2>
+				<div class="title-projets">
+					<h2>Mes Projets</h2>
+					<!-- Bouton "modifier" visible après connexion -->
+					<div class="hidden-edit-button-projets">
+						<i class="fa-regular fa-pen-to-square" style="color: #000000;"></i>
+						<p>modifier</p>
+					</div>
+				</div>
 
 				<div class="filters">
 					<div id="filter-tous">

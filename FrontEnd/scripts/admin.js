@@ -7,15 +7,32 @@ const token = sessionStorage.getItem("token");
 
 console.log(token);
 
-// APPARITION DES NOUVEAUX MENUS EDITIONS SUR LA PAGE ACCUEIL
+//**************************************** */
+// MODIFICATION DESIGN PAGE ADMINISTRATEUR
+//**************************************** */
 
-// selectionner la div
+function modifyClassElementDOM (selectorCSS, newclass, removedclass){
+    let selectionElement = document.querySelector(selectorCSS);
+    selectionElement.classList.add(newclass);
+    selectionElement.classList.remove(removedclass);
+};
 
 if(token !== null){
+
     console.log("Connecté !");
-    let menuEdition = document.querySelector(".wait-connexion");
-    menuEdition.classList.add("administrateur")
-    menuEdition.classList.remove("wait-connexion")
+
+    // Modification class barre édition > pour apparition
+    modifyClassElementDOM(".hidden-bar-edit", "bar-edit", "hidden-bar-edit");
+    
+    // Modification class bouton "modifer" de introduction > pour apparition
+    modifyClassElementDOM(".hidden-edit-button-intro", "edit-button-intro", "hidden-edit-button-intro");
+
+    // Modification class bouton "modifier" des projets > pour apparition
+    modifyClassElementDOM(".hidden-edit-button-projets", "edit-button-projets", "hidden-edit-button-projets");
+
+    // Disparition des boutons filtres
+    modifyClassElementDOM(".filters", "hidden-filters", "filters");
+
 } else {
     console.log("Pas connecté");
-};
+}

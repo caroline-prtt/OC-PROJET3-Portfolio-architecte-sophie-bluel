@@ -357,15 +357,16 @@ désormais class=errorLogInMessage */
 
 /* -------------------------------------- */
 /* -------- PAGE ADMINISTRATEUR --------- */
+/*            APRES CONNEXION             */
 /* -------------------------------------- */
 
 /* BARRE DE MENU ÉDITION */
 
-.wait-connexion{
+.hidden-bar-edit{
 	display: none;
 }
 
-.administrateur{
+.bar-edit{
 	width: 100%;
 	height: 59px;
 	display: flex;
@@ -376,14 +377,57 @@ désormais class=errorLogInMessage */
 	color: white;
 }
 
-.administrateur div[class="edition"]{
+.bar-edit div[class="mode-edition"]{
 	display: flex;
 	gap: 10px;
 }
 
-.administrateur div[class="publication"]{
+.bar-edit div[class="button-publication"]{
 	padding: 11px 23px;
 	background-color: white;
 	color: black;
 	border-radius: 60px;
 }
+
+/* BOUTON "MOFIFIER" INTRO */
+
+.hidden-edit-button-intro{
+	display:none;
+}
+
+.edit-button-intro{
+	align-self: flex-start;
+	display: flex;
+	gap: 10px;
+	margin-top: 15px;
+}
+
+/* BOUTON "MOFIFIER" MES PROJETS */
+
+.title-projets{
+	position : relative;
+	text-align: center;
+}
+  
+.hidden-edit-button-projets{
+	display: none;
+}
+
+.edit-button-projets{
+	position: absolute;
+		top: 30%;
+		right:25%;
+	display: flex;
+	gap: 10px;
+}
+
+/* DISPARITION DES BOUTONS FILTRES */
+
+.hidden-filters{
+	display:none;
+}
+
+
+/* ------------------------- */
+/* -------- MODALE --------- */
+/* ------------------------- */
