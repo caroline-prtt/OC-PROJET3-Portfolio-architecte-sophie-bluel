@@ -70,10 +70,11 @@
 					<!-- Bouton "modifier" visible après connexion -->
 					<div class="hidden-edit-button-projets">
 						<i class="fa-regular fa-pen-to-square" style="color: #000000;"></i>
-						<p>modifier</p>
+						<a href="#modal1">modifier</a> <!--Ouverture modale n°1 : gallerie photo-->
 					</div>
 				</div>
-
+				
+				<!-- Boutons filtres -->
 				<div class="filters">
 					<div id="filter-tous">
 						<p>Tous</p>
@@ -92,6 +93,53 @@
 				<!-- Intégration dynamique de la gallery de projets -->
 				<div class="gallery">
 				</div>
+
+
+				<!-- MODALE N°1 : GALLERIE PHOTO visible au click sur le bouton "modifier" des projets -->
+				<aside id="modal1" class="modal" aria-hidden="true" role="dialog" style="display: none;">
+					<div class="modal-wrapper">
+						<i class="fa-solid fa-xmark"></i>
+						<h3>Galerie photo</h3>
+						<div class="modal-wrapper-photos">
+							<!-- intégration dynamique -->
+						</div>
+						<a href="#modal2" class="button-add-photo">Ajouter une photo</a> <!-- Ouvre la modale ajout projet-->
+						<p>Supprimer la galerie</p>
+					</div>
+				</aside>
+
+				<!-- MODALE N°2 : AJOUT PHOTO visible au click "ajout" de la modale 1-->
+				<aside id="modal2" class="modal" aria-hidden="true" role="dialog" style="display: none;">
+					<div class="modal-wrapper">
+						<div class="modal2-header-icones">
+							<i class="fa-solid fa-arrow-right fa-rotate-180"></i>
+							<i class="fa-solid fa-xmark"></i>
+						</div>
+						<h3>Ajout photo</h3>
+						<form class="form-add-photo" method="post" action=""> <!--REVOIR LE FORMULAIRE reste à préciser l'attribut action-->
+							<fieldset class="wrapper-upload-photo">
+								<div class="select-photo">
+									<i class="fa-regular fa-image" style="color: #cbd6dc;"></i>
+									<label for="file-upload">+ Ajouter photo</label>
+									<input  type="file" id="file-upload" name="file-upload" accept=".jpg, .png" required>
+									<p>jpg, png : 4mo max</p>
+								</div>
+								<div class="preview-photo"></div>
+							</fieldset>
+							<fieldset class="wrapper-title-category">
+								<label for="title-photo">Titre</label>
+								<input type="text" id="title-photo" name="title-photo" required>
+								<label for="category-projet">Catégorie</label>
+								<select name="category-projet" id="category-projet">
+									<option value="objet">Objet</option>
+									<option value="appartement">Appartement</option>
+									<option value="hotel">Hôtel & Restaurant</option>
+								</select>
+							</fieldset>
+							<button class="invalid">Valider</button>
+						</form>
+					</div>
+				</aside>
 
 			</section>
 

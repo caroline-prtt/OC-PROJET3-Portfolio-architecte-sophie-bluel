@@ -411,6 +411,16 @@ désormais class=errorLogInMessage */
   
 .hidden-edit-button-projets{
 	display: none;
+	
+}
+
+a[href="#modal1"]{
+	text-decoration: none;
+	color: black;
+}
+
+a[href="#modal1"]:hover{
+	color:#B1663C;
 }
 
 .edit-button-projets{
@@ -427,7 +437,176 @@ désormais class=errorLogInMessage */
 	display:none;
 }
 
-
 /* ------------------------- */
 /* -------- MODALE --------- */
 /* ------------------------- */
+
+/* GENERAL */
+
+.modal{
+	position:fixed;
+		top: 0;
+		left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-wrapper{
+	overflow: auto;
+	width: 630px;
+	max-width: calc(100vw - 30px);
+	max-height: calc(100vh - 30px);
+	border-radius: 10px;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.modal h3{
+	font-size: 26px;
+	margin-bottom: 36px;
+}
+
+.fa-xmark{
+	align-self: flex-end;
+	margin: 26px 30px 10px 0px;
+	font-size: 24px;
+	color:black;
+}
+
+.fa-xmark:hover{
+	color: #D65353;
+}
+
+/* MODALE 1 */
+
+/* DISPLAY:NONE; ajouté directement dans le code HTML
+car sera plus simple a gérer après en Javascript*/
+
+
+
+.modal-wrapper-photos{
+	display: flex;
+	flex-wrap: wrap;
+	gap:7px;
+	padding-bottom: 47px;
+	border-bottom: 1px solid #B3B3B3;
+}
+
+.button-add-photo{
+	font-family: Syne;
+	font-size: 14px;
+	text-decoration: none;
+	color: white;
+	padding: 10px 50px;
+	background-color: #1D6154;
+	border-radius: 60px;
+}
+
+#modal1 p{
+	font-family: Syne;
+	font-size: 14px;
+	color: #D65353;
+	font-weight: 400;
+	margin: 23px 0px 48px 0px;
+}
+
+/* MODALE 2 */
+
+/* display:none; ajouté directement dans le code HTML
+car sera plus simple a gérer après en Javascript*/
+
+.modal2-header-icones{
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.fa-arrow-right{
+	font-size: 24px;
+	margin: 26px 0px 10px 30px;
+	color:black;
+}
+
+.fa-arrow-right:hover{
+	color:#CBD6DC;
+}
+
+.form-add-photo{
+	width: 67%;
+	display: flex;
+	flex-direction:column;
+	justify-content: space-between;
+}
+
+.select-photo{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #E8F1F6;
+	border-radius: 3px;
+}
+
+.wrapper-upload-photo i{
+	font-size: 58px;
+	margin: 22px 0px 15px 0px;
+}
+
+.wrapper-upload-photo label{
+	color:#306685;
+	font-weight: bold;
+	background-color: #CBD6DC;
+	padding: 10px 33px;
+	border-radius: 50px;
+	cursor: copy;
+}
+
+.wrapper-upload-photo input{
+	display: none;
+}
+
+input[type="text"]{
+	font-family: 'Work Sans';
+}
+
+.wrapper-upload-photo p{
+	font-size: 10px;
+	color: #444;
+	margin: 7px 0 19px 0;
+}
+
+.wrapper-title-category{
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 47px;
+	border-bottom: 1px solid #B3B3B3;
+}
+
+.wrapper-title-category label{
+	margin: 21px 0px 10px 0px;
+	color: #3D3D3D;
+}
+
+.wrapper-title-category input, .wrapper-title-category select{
+	height: 51px;
+	border: none;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+}
+
+#modal2 button{
+	align-self: center;
+	font-family: Syne;
+	color: white;
+	padding: 10px 80px;
+	margin: 32px 0 55px 0;
+	background-color: #B3B3B3;
+	border: none;
+	border-radius: 60px;
+}
