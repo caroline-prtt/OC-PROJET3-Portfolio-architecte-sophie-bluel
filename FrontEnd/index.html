@@ -70,7 +70,7 @@
 					<!-- Bouton "modifier" visible après connexion -->
 					<div class="hidden-edit-button-projets">
 						<i class="fa-regular fa-pen-to-square" style="color: #000000;"></i>
-						<a href="#modal1">modifier</a> <!--Ouverture modale n°1 : gallerie photo-->
+						<a href="#modal1" class="js-open-modal1">modifier</a> <!--Ouverture modale n°1 : gallerie photo-->
 					</div>
 				</div>
 				
@@ -103,7 +103,7 @@
 						<div class="modal-wrapper-photos">
 							<!-- intégration dynamique -->
 						</div>
-						<a href="#modal2" class="button-add-photo">Ajouter une photo</a> <!-- Ouvre la modale ajout projet-->
+						<a href="#modal2" class="button-add-photo js-open-modal2">Ajouter une photo</a> <!-- Ouvre la modale ajout projet-->
 						<p>Supprimer la galerie</p>
 					</div>
 				</aside>
@@ -112,7 +112,9 @@
 				<aside id="modal2" class="modal" aria-hidden="true" role="dialog" style="display: none;">
 					<div class="modal-wrapper">
 						<div class="modal2-header-icones">
-							<i class="fa-solid fa-arrow-right fa-rotate-180"></i>
+							<a href="#modal1" class="js-return-modal1">
+								<i class="fa-solid fa-arrow-right fa-rotate-180"></i>
+							</a>
 							<i class="fa-solid fa-xmark"></i>
 						</div>
 						<h3>Ajout photo</h3>

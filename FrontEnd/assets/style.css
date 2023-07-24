@@ -426,7 +426,7 @@ a[href="#modal1"]:hover{
 .edit-button-projets{
 	position: absolute;
 		top: 30%;
-		right:25%;
+		right: 25%;
 	display: flex;
 	gap: 10px;
 }
@@ -488,8 +488,6 @@ a[href="#modal1"]:hover{
 
 /* DISPLAY:NONE; ajouté directement dans le code HTML
 car sera plus simple a gérer après en Javascript*/
-
-
 
 .modal-wrapper-photos{
 	display: flex;
