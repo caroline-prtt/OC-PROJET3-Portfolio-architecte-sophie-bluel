@@ -87,6 +87,29 @@ linkReturnModal1.addEventListener("click", function(event){
     openModal(event, modal1);
 })
 
+
+// FERMETURE DES MODALES
+// ---------------------
+
+// Stocke une liste : tous les éléments du DOM ayant la class indiquée
+const buttonCloseModal = document.querySelectorAll(".fa-xmark");
+console.log(buttonCloseModal);
+
+function closeModal(event){
+    event.preventDefault();
+    modal1.style.display = "none";
+    modal2.style.display = "none";
+}
+
+//méthode forEach permet d'itérer chaque élément de la liste et d'exécuter une fonction
+buttonCloseModal.forEach(function (icon) { 
+    icon.addEventListener("click", function (event) {
+      closeModal(event);
+    });
+});
+
+
+
 /* 
     2 - FERMETURE MODALE : gérer fermeture de la modale au clic sur le bouton croix ou
     lorsqu'on clique à coté de la modale
