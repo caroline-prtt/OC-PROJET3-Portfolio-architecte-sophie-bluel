@@ -38,9 +38,9 @@ if(token !== null){
 }
 
 
-// ******************************
-// EXÉCUTION DES FENETRES MODALES
-// ******************************
+// ***************************************
+// *** EXÉCUTION DES FENETRES MODALES ***
+// ***************************************
 
 // GÉNÉRAL
 // -------
@@ -53,6 +53,9 @@ const linkOpenModal2 = document.querySelector(".js-open-modal2");
 
 // lien icone "flèche retour" ouvrant la modale 1
 const linkReturnModal1 = document.querySelector(".js-return-modal1");
+
+// toutes les modales 
+const modals = document.querySelectorAll(".modal");
 
 // le conteneur modale 1 <aside>
 const modal1 = document.getElementById("modal1");
@@ -68,10 +71,12 @@ function openModal(event, target){
     event.preventDefault();
     if (target === modal1){
         modal1.style.display = null;
+        modal1.setAttribute("aria-hidden", "false");
         modal2.style.display = "none";
     } else {
         modal1.style.display = "none";
         modal2.style.display = null;
+        modal2.setAttribute("aria-hidden", "false");
     }
 };
 
@@ -91,29 +96,60 @@ linkReturnModal1.addEventListener("click", function(event){
 // FERMETURE DES MODALES
 // ---------------------
 
-// Stocke une liste : tous les éléments du DOM ayant la class indiquée
+// Stocke la liste de toutes les icones "croix" permettant de fermer la modale
 const buttonCloseModal = document.querySelectorAll(".fa-xmark");
-console.log(buttonCloseModal);
 
 function closeModal(event){
     event.preventDefault();
     modal1.style.display = "none";
+    modal1.setAttribute("aria-hidden", "true");
     modal2.style.display = "none";
+    modal2.setAttribute("aria-hidden", "true")
 }
 
-//méthode forEach permet d'itérer chaque élément de la liste et d'exécuter une fonction
-buttonCloseModal.forEach(function (icon) { 
-    icon.addEventListener("click", function (event) {
+// Pour chaque icone (i) on exécute la fonction Listener : au clic > closeModal
+buttonCloseModal.forEach(function (i) { 
+    i.addEventListener("click", function (event) {
       closeModal(event);
     });
 });
 
+/* On ajoute la possibilité de fermer la modale lorsqu'un clic 
+est effectué en dehors de la div "modal-wrapper*/
+
+//Constante permettant de stoper la propagation du clic à l'élément parent
+const stopPropagation = function(event){
+    event.stopPropagation();
+}
+
+// POUR MODALE 1
+
+modal1.addEventListener("click", function(event){
+    closeModal(event);
+})
+
+modal1.querySelector(".modal-stop-propagation").addEventListener("click", function(event){
+   stopPropagation(event);
+})
+
+// POUR MODALE 2
+
+modal2.addEventListener("click", function(event){
+    closeModal(event);
+})
+
+modal2.querySelector(".modal-stop-propagation").addEventListener("click", function(event){
+   stopPropagation(event);
+})
+
+
+// APPARITION DES MINIATURES DESPROJETS DANS MODALE 1
+// --------------------------------------------------
+
 
 
 /* 
-    2 - FERMETURE MODALE : gérer fermeture de la modale au clic sur le bouton croix ou
-    lorsqu'on clique à coté de la modale
-
+    
     3 - APPARITION PROJETS : photos des projets avec pour chacun
         _ une icone corbeille permettant de supprimer le projet (chaque bouton
             doit avoir son propre id pour reconnaitre le projet supprimée)

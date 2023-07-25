@@ -482,6 +482,7 @@ a[href="#modal1"]:hover{
 
 .fa-xmark:hover{
 	color: #D65353;
+	cursor: pointer;
 }
 
 /* MODALE 1 */
