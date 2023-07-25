@@ -508,7 +508,7 @@ car sera plus simple a gérer après en Javascript*/
 	border-radius: 60px;
 }
 
-#modal1 p{
+.removeGallery{
 	font-family: Syne;
 	font-size: 14px;
 	color: #D65353;
@@ -608,4 +608,24 @@ input[type="text"]{
 	background-color: #B3B3B3;
 	border: none;
 	border-radius: 60px;
+}
+
+/* AFFICHAGE DES MINIATURES PHOTOS MODALE 1 */
+
+.modal-wrapper-photos {
+	margin: 0 100px 38px 100px;
+	display: flex;
+	justify-content:flex-start;
+	flex-wrap: wrap;
+	flex-grow: 1;
+	flex-basis: 0;
+}
+
+.modal-wrapper-photos figure{
+	width: 80px;
+}
+
+.modal-wrapper-photos img{
+	max-width: 100%;
+	height: auto;
 }

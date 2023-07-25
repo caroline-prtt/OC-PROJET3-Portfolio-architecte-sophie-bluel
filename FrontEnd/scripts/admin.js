@@ -99,6 +99,7 @@ linkReturnModal1.addEventListener("click", function(event){
 // Stocke la liste de toutes les icones "croix" permettant de fermer la modale
 const buttonCloseModal = document.querySelectorAll(".fa-xmark");
 
+// Déclaration de la fonction fermeture modale 
 function closeModal(event){
     event.preventDefault();
     modal1.style.display = "none";
@@ -107,7 +108,7 @@ function closeModal(event){
     modal2.setAttribute("aria-hidden", "true")
 }
 
-// Pour chaque icone (i) on exécute la fonction Listener : au clic > closeModal
+// Pour chaque icone (i) exécute un Listener : au clic > appelle closeModal
 buttonCloseModal.forEach(function (i) { 
     i.addEventListener("click", function (event) {
       closeModal(event);
@@ -122,17 +123,19 @@ const stopPropagation = function(event){
     event.stopPropagation();
 }
 
-// POUR MODALE 1
+// POUR MODALE 1 : 
 
+// par défaut lors du click sur la modal(générale) : fermerture de la modale
 modal1.addEventListener("click", function(event){
     closeModal(event);
 })
-
+/* on sélectionne la div et on lui applique un stop propagation > limite donc
+l'application de la méthode précédente*/
 modal1.querySelector(".modal-stop-propagation").addEventListener("click", function(event){
    stopPropagation(event);
 })
 
-// POUR MODALE 2
+// POUR MODALE 2 : 
 
 modal2.addEventListener("click", function(event){
     closeModal(event);
@@ -146,7 +149,42 @@ modal2.querySelector(".modal-stop-propagation").addEventListener("click", functi
 // APPARITION DES MINIATURES DESPROJETS DANS MODALE 1
 // --------------------------------------------------
 
+// On déclare la fonction créant les miniatures 
 
+function displayModalPictures (works){
+
+    for (let i = 0; i < works.length; i++) {
+
+        // récupère l'élément du DOM qui accueillera les travaux
+        const divModalPictures = document.querySelector(".modal-wrapper-photos");
+
+        // On créé la balise dédié à une fiche travaux
+        const workElement = document.createElement("figure");
+        // On créé la balise image des travaux
+        const imageElement = document.createElement("img");
+        // On accède à l'indice i de la liste de travaux pour configurer la source de l'image
+        imageElement.src = works[i].imageUrl;
+        // on créé la mention "editer" sous la photo
+        const editElement = document.createElement("p");
+        editElement.textContent = "éditer"
+        editElement.getAttribute("class", "editPhoto")
+
+        // On rattache tous les éléments à leur élément parent
+        divModalPictures.appendChild(workElement);
+        workElement.appendChild(imageElement);
+        workElement.appendChild(editElement);
+    }
+}
+
+async function modalPictures(){
+    // Stocke les datas de la fonction fetch GET/WORKS (issue de script.js)
+    const works = await getData();
+
+    //Et on affiche l'ensemble des travaux
+    displayModalPictures(works);
+}
+
+modalPictures();
 
 /* 
     
