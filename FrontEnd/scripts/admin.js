@@ -146,12 +146,14 @@ modal2.querySelector(".modal-stop-propagation").addEventListener("click", functi
 })
 
 
-// APPARITION DES MINIATURES DESPROJETS DANS MODALE 1
+// APPARITION DES MINIATURES DES PROJETS DANS MODALE 1
 // --------------------------------------------------
 
-// On déclare la fonction créant les miniatures 
+// On déclare la fonction qui créé les miniatures 
 
 function displayModalPictures (works){
+
+    console.log(works);
 
     for (let i = 0; i < works.length; i++) {
 
@@ -162,8 +164,14 @@ function displayModalPictures (works){
         const workElement = document.createElement("figure");
         // On créé la balise image des travaux
         const imageElement = document.createElement("img");
-        // On accède à l'indice i de la liste de travaux pour configurer la source de l'image
+        // On accède à l'indice i de la liste de travaux pour configurer la source de l'image et le texte alternatif
         imageElement.src = works[i].imageUrl;
+        imageElement.alt = works[i].title;
+        //ajout des icones poubelle pour suppression projets
+        const buttonDelete = document.createElement("i");
+        buttonDelete.classList.add("fa-solid", "fa-trash-can");
+        //on attribut à chaque icone un attribut "data-id" ayant l'id du projet correspondant
+        buttonDelete.dataset.id = works[i].id;
         // on créé la mention "editer" sous la photo
         const editElement = document.createElement("p");
         editElement.textContent = "éditer"
@@ -172,8 +180,29 @@ function displayModalPictures (works){
         // On rattache tous les éléments à leur élément parent
         divModalPictures.appendChild(workElement);
         workElement.appendChild(imageElement);
+        workElement.appendChild(buttonDelete);
         workElement.appendChild(editElement);
+
+
     }
+}
+
+// On déclare la fonction qui créé l'EventListener sur les boutons Delete
+
+function ListenerButtonDelete(){
+
+    // On récupère tous les boutonsDelete 
+    const allButtonsDelete = document.querySelectorAll(".fa-trash-can");
+
+    allButtonsDelete.forEach(function(buttonDelete){
+        //On stocke l'id du bouton
+        const buttonDeleteId = buttonDelete.dataset.id;
+        //On créé l'EventListener pour chaque bouton > appelle la fonction deleteWork
+        buttonDelete.addEventListener("click", function(){
+            console.log("Je supprime le projet numéro " + buttonDeleteId);
+            //deleteWork(buttonDeleteId)
+        })
+    })
 }
 
 async function modalPictures(){
@@ -182,19 +211,36 @@ async function modalPictures(){
 
     //Et on affiche l'ensemble des travaux
     displayModalPictures(works);
+
+    //On ajoute l'EventListener au click sur le bouton Delete
+    ListenerButtonDelete();
 }
 
 modalPictures();
 
+
+// SUPPRESSION D'UN PROJET 
+// ------------------------
+
+
+async function deleteWork (id){
+    
+    try{
+
+    }
+    catch{
+        console.
+    }
+
+    
+    
+    // Rafraichir automatiquement la page
+}
+
+
+
 /* 
     
-    3 - APPARITION PROJETS : photos des projets avec pour chacun
-        _ une icone corbeille permettant de supprimer le projet (chaque bouton
-            doit avoir son propre id pour reconnaitre le projet supprimée)
-        _ un bouton éditer
-
-    4 - Le bouton ajouter un projet pour passer à la modale 2 (AJOUTER LIEN & ANCRE)
-
     5 - AJOUT DE PROJET : modale ajout de projet : 
         _ apparition de la miniature de la photo sélectionnée
         _ modification du bouton "valider" lorsque tous les champs

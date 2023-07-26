@@ -629,3 +629,23 @@ input[type="text"]{
 	max-width: 100%;
 	height: auto;
 }
+
+/* icone poubelle */
+
+.modal-wrapper-photos figure{
+	position :relative;
+}
+.fa-trash-can{
+	position : absolute;
+		right : 8px;
+		top : 8px;
+	font-size: 11px;
+	color: white;
+	padding: 4px;
+	background-color: black;
+	border-radius: 2px;
+}
+
+.fa-trash-can:hover{
+	cursor: pointer;
+}
