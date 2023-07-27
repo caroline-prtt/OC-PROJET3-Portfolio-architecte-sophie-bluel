@@ -236,10 +236,11 @@ async function deleteWork (id){
         // On stocke l'élément de la MODALE "Figure" du DOM qui sera à supprimer
         const photoModalToDelete = document.querySelector(".modal-photo"+id);
         console.log("Disparition de la figure ayant la class°"+ photoModalToDelete.getAttribute("class"))
-        
-        // On fait la requête DELETE à l'API et on stocke la réponse
 
         /*
+
+        // On fait la requête DELETE à l'API et on stocke la réponse
+
         const response = await fetch("http://localhost:5678/api/works/${id}", {
             method: "DELETE",
             headers: {
@@ -248,12 +249,17 @@ async function deleteWork (id){
             }
         });
 
+        // Puis je dois retourner la réponse ??? Si oui après le if/else ?
+
         //Puis après la suppression sur le serveur, on supprime l'élément du DOM
 
         if (response.ok === true){
             
+            // Suppression du projet de la MODALE
             photoModalToDelete.remove();
             
+            // Il faut ajouter une suppression du projet de l'accueil ?
+
            // Penser à rafraichir automatiquement la page si besoin par ex:
                     // Permet d'effacer les travaux précédemment affichés
                     document.querySelector(".modal-wrapper-photos").innerHTML = "";
