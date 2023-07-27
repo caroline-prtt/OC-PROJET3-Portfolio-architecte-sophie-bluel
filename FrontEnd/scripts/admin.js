@@ -162,8 +162,8 @@ function displayModalPictures (works){
 
         // On créé la balise dédié à une fiche travaux
         const workElement = document.createElement("figure");
-        // On créé une class spécifique pour chaque balise figure (pour gérer suppression de l'élément)
-        workElement.classList.add("modal-photo"+works[i].id);
+        // On créé un id spécifique pour chaque balise figure (pour gérer suppression de l'élément)
+        workElement.setAttribute("id", "modal-photo"+works[i].id);
         // On créé la balise image des travaux
         const imageElement = document.createElement("img");
         // On accède à l'indice i de la liste de travaux pour configurer la source de l'image et le texte alternatif
@@ -227,17 +227,13 @@ modalPictures();
 
 //buttonDeletID = id du projet affilié
 
-async function deleteWork (id){
+async function deleteWork(id){
     
     try{
 
-        console.log("Suppression du projet n°" + id)
-
         // On stocke l'élément de la MODALE "Figure" du DOM qui sera à supprimer
-        const photoModalToDelete = document.querySelector(".modal-photo"+id);
-        console.log("Disparition de la figure ayant la class°"+ photoModalToDelete.getAttribute("class"))
-
-        /*
+        const photoModalToDelete = document.querySelector("#modal-photo"+id);
+        const projetAccueilToDelete = document.querySelector("#accueil-projet"+id);
 
         // On fait la requête DELETE à l'API et on stocke la réponse
 
@@ -245,34 +241,47 @@ async function deleteWork (id){
             method: "DELETE",
             headers: {
                 "Content-Type" : "application/json",
-                "Authorization" : "Bearer ${token}" 
+                "Authorization" : "Bearer " + token 
             }
         });
-
-        // Puis je dois retourner la réponse ??? Si oui après le if/else ?
 
         //Puis après la suppression sur le serveur, on supprime l'élément du DOM
 
         if (response.ok === true){
-            
-            // Suppression du projet de la MODALE
-            photoModalToDelete.remove();
-            
-            // Il faut ajouter une suppression du projet de l'accueil ?
 
-           // Penser à rafraichir automatiquement la page si besoin par ex:
-                    // Permet d'effacer les travaux précédemment affichés
-                    document.querySelector(".modal-wrapper-photos").innerHTML = "";
-                    // Puis on relance l'affichage des projets : 
-                    displayModalPictures (works) // > est ce qu'on laisse works ? 
-                    //Car du coup lélément a été supprimé du serveur 
-                    //donc à priori le work n°? ne devrait pas être généré ?
+            console.log("La requête a bien été envoyé, je supprime alors du DOM le projet n° " + id + photoModalToDelete)
+
+            const works = await getData();
+            
+            console.log(works);
+            
+            /* Ici on a bien la réponse, mais le console log renvoie les 11 projets. 
+            Donc estime que la requête fetch est correcte, mais ne supprime pas pour autant 
+            le projet sélectionné du serveur... Donc je renvoie les 11 projets, et non plus 
+            les 10, ou les 9... */
+
+            
+                            // // Permet d'effacer les travaux précédemment affichés
+                            // document.querySelector(".modal-wrapper-photos").innerHTML = "";
+                            // // Puis on relance l'affichage des projets : 
+                            // displayModalPictures (works) // > est ce qu'on laisse works ? 
+                            
+                            // // Page d'accueil
+                            // document.querySelector(".gallery").innerHTML = "";
+                            // // Puis on affiche uniquement les travaux existant après suppression
+                            // displayWorks(works);
+            
+            // // Suppression du projet de la MODALE et de l'ACCUEIL
+            // // Mais ne supprime pas les projets coté serveur, 
+            // // Donc les 11 projets réapparaissent lorsqu'on recharge la page
+            photoModalToDelete.remove();
+            projetAccueilToDelete.remove();
+
         } 
         else {
             console.log("Erreur lors de la suppression du projet")
         }
 
-        */
     }
     catch{
         console.log("Erreur de la requête DELETE à l'API");
@@ -281,6 +290,8 @@ async function deleteWork (id){
 }
 
 
+// AJOUT D'UN PROJET 
+// ------------------
 
 /* 
     

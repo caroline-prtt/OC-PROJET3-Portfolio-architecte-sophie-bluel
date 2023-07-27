@@ -20,6 +20,8 @@ function displayWorks (works){
 
         // On créé la balise dédié à une fiche travaux
         const workElement = document.createElement("figure");
+        // On créé un id spécifique pour chaque balise figure (pour gérer suppression de l'élément)
+        workElement.setAttribute("id", "accueil-projet"+works[i].id);
         // On créé la balise image des travaux
         const imageElement = document.createElement("img");
         // On accède à l'indice i de la liste de travaux pour configurer la source de l'image
