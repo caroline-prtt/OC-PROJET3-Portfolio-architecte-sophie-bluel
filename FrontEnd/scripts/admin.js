@@ -162,6 +162,8 @@ function displayModalPictures (works){
 
         // On créé la balise dédié à une fiche travaux
         const workElement = document.createElement("figure");
+        // On créé une class spécifique pour chaque balise figure (pour gérer suppression de l'élément)
+        workElement.classList.add("modal-photo"+works[i].id);
         // On créé la balise image des travaux
         const imageElement = document.createElement("img");
         // On accède à l'indice i de la liste de travaux pour configurer la source de l'image et le texte alternatif
@@ -183,7 +185,6 @@ function displayModalPictures (works){
         workElement.appendChild(buttonDelete);
         workElement.appendChild(editElement);
 
-
     }
 }
 
@@ -199,8 +200,10 @@ function ListenerButtonDelete(){
         const buttonDeleteId = buttonDelete.dataset.id;
         //On créé l'EventListener pour chaque bouton > appelle la fonction deleteWork
         buttonDelete.addEventListener("click", function(){
-            console.log("Je supprime le projet numéro " + buttonDeleteId);
-            //deleteWork(buttonDeleteId)
+            console.log("Clic sur corbeille n°" + buttonDeleteId);
+            //Appel de la fonction deleteWork 
+            //l'id du bouton en paramètre = id du projet à supprimer
+            deleteWork(buttonDeleteId) 
         })
     })
 }
@@ -222,19 +225,53 @@ modalPictures();
 // SUPPRESSION D'UN PROJET 
 // ------------------------
 
+//buttonDeletID = id du projet affilié
 
 async function deleteWork (id){
     
     try{
 
+        console.log("Suppression du projet n°" + id)
+
+        // On stocke l'élément de la MODALE "Figure" du DOM qui sera à supprimer
+        const photoModalToDelete = document.querySelector(".modal-photo"+id);
+        console.log("Disparition de la figure ayant la class°"+ photoModalToDelete.getAttribute("class"))
+        
+        // On fait la requête DELETE à l'API et on stocke la réponse
+
+        /*
+        const response = await fetch("http://localhost:5678/api/works/${id}", {
+            method: "DELETE",
+            headers: {
+                "Content-Type" : "application/json",
+                "Authorization" : "Bearer ${token}" 
+            }
+        });
+
+        //Puis après la suppression sur le serveur, on supprime l'élément du DOM
+
+        if (response.ok === true){
+            
+            photoModalToDelete.remove();
+            
+           // Penser à rafraichir automatiquement la page si besoin par ex:
+                    // Permet d'effacer les travaux précédemment affichés
+                    document.querySelector(".modal-wrapper-photos").innerHTML = "";
+                    // Puis on relance l'affichage des projets : 
+                    displayModalPictures (works) // > est ce qu'on laisse works ? 
+                    //Car du coup lélément a été supprimé du serveur 
+                    //donc à priori le work n°? ne devrait pas être généré ?
+        } 
+        else {
+            console.log("Erreur lors de la suppression du projet")
+        }
+
+        */
     }
     catch{
-        console.
-    }
-
+        console.log("Erreur de la requête DELETE à l'API");
+    }    
     
-    
-    // Rafraichir automatiquement la page
 }
 
 
