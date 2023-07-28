@@ -437,11 +437,12 @@ a[href="#modal1"]:hover{
 	display:none;
 }
 
-/* ------------------------- */
-/* -------- MODALE --------- */
-/* ------------------------- */
+/* -------------------------- */
+/* -------- MODALES --------- */
+/* -------------------------- */
 
 /* GENERAL */
+/* ------- */
 
 .modal{
 	position:fixed;
@@ -486,6 +487,7 @@ a[href="#modal1"]:hover{
 }
 
 /* MODALE 1 */
+/* -------- */
 
 /* DISPLAY:NONE; ajouté directement dans le code HTML
 car sera plus simple a gérer après en Javascript*/
@@ -516,7 +518,48 @@ car sera plus simple a gérer après en Javascript*/
 	margin: 23px 0px 48px 0px;
 }
 
+/* Affichage des Miniatures Photos */
+
+.modal-wrapper-photos {
+	margin: 0 100px 38px 100px;
+	display: flex;
+	justify-content:flex-start;
+	flex-wrap: wrap;
+	flex-grow: 1;
+	flex-basis: 0;
+}
+
+.modal-wrapper-photos figure{
+	width: 80px;
+}
+
+.modal-wrapper-photos img{
+	max-width: 100%;
+	height: auto;
+}
+
+/* icone poubelle */
+
+.modal-wrapper-photos figure{
+	position :relative;
+}
+.fa-trash-can{
+	position : absolute;
+		right : 8px;
+		top : 8px;
+	font-size: 11px;
+	color: white;
+	padding: 4px;
+	background-color: black;
+	border-radius: 2px;
+}
+
+.fa-trash-can:hover{
+	cursor: pointer;
+}
+
 /* MODALE 2 */
+/* -------- */
 
 /* display:none; ajouté directement dans le code HTML
 car sera plus simple a gérer après en Javascript*/
@@ -544,7 +587,7 @@ car sera plus simple a gérer après en Javascript*/
 	justify-content: space-between;
 }
 
-.select-photo{
+#select-photo{
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -610,42 +653,16 @@ input[type="text"]{
 	border-radius: 60px;
 }
 
-/* AFFICHAGE DES MINIATURES PHOTOS MODALE 1 */
+/* Affichage miniature photo sélectionnée */
 
-.modal-wrapper-photos {
-	margin: 0 100px 38px 100px;
+#preview-photo{
 	display: flex;
-	justify-content:flex-start;
-	flex-wrap: wrap;
-	flex-grow: 1;
-	flex-basis: 0;
+	justify-content: center;
+	background-color: #E8F1F6;
+	max-height: 170px;
 }
 
-.modal-wrapper-photos figure{
-	width: 80px;
-}
-
-.modal-wrapper-photos img{
+#preview-photo img{
+	object-fit: contain;
 	max-width: 100%;
-	height: auto;
-}
-
-/* icone poubelle */
-
-.modal-wrapper-photos figure{
-	position :relative;
-}
-.fa-trash-can{
-	position : absolute;
-		right : 8px;
-		top : 8px;
-	font-size: 11px;
-	color: white;
-	padding: 4px;
-	background-color: black;
-	border-radius: 2px;
-}
-
-.fa-trash-can:hover{
-	cursor: pointer;
 }

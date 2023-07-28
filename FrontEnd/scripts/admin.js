@@ -293,6 +293,54 @@ async function deleteWork(id){
 // AJOUT D'UN PROJET 
 // ------------------
 
+// AFFICHAGE MINIATURE PHOTO A AJOUTER
+
+// On stocke la Div Selection de fichier
+const selectPhotoDiv = document.getElementById("select-photo");
+
+// On stocke la div qui contiendra la miniature 
+const previewPhotoDiv = document.getElementById("preview-photo");
+
+// On stocke l'input selection fichier
+const fileInput = document.getElementById("file-upload");
+
+// On ajoute un EventListener CHANGE à cet input (>écoute le changement de valeur)
+
+fileInput.addEventListener("change", function (){
+    
+    /* on stocke le fichier sélectionné (OBJET): on accède à la propriété files de l'input
+    et on sélectionne le premier élément du tableau (= premier élément sélectionné) */
+    const fileSelected = fileInput.files[0];
+    console.log(fileSelected); //renvoi l'objet file (nom, dernière modif, format...)
+
+    if (fileSelected != null){
+
+        /* On créé une nouvelle instance de l'objet FileReader
+        FileReader est une API JS qui permet de lire le contenu des fichiers (type file)*/
+        const reader = new FileReader();
+
+        /* onload = gestionnaire d'événement : lorsqu'une opération de lecture est menée à bien lance fonction event
+        -> la fonction est exécutée lorsque le contenu du fichier est chargée avec succès */
+        reader.onload = function (event){
+            
+            // stocke l'URL de l'image dans propriété result de l'objet event.target
+            const imageURL = event.target.result;
+
+            // cache la div "selectPhoto"
+            selectPhotoDiv.style.display = "none";
+
+            // On fait apparaitre dans la div "preview" la miniature en insérant innerHTML img
+            previewPhotoDiv.innerHTML = `<img src="${imageURL}" alt="Miniature image à ajouter">`;
+        } 
+
+        /*Puis on lance lecture du fichier en utilisant FileReader et la méthode readAsDataURL(file) 
+        pour lire le contenu du fichier sous la forme d'une URL de données*/
+        reader.readAsDataURL(fileSelected);
+    }
+
+    //else{ } ?
+
+})
 /* 
     
     5 - AJOUT DE PROJET : modale ajout de projet : 
