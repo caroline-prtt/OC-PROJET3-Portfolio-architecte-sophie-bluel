@@ -237,7 +237,7 @@ async function deleteWork(id){
 
         // On fait la requête DELETE à l'API et on stocke la réponse
 
-        const response = await fetch("http://localhost:5678/api/works/${id}", {
+        const response = await fetch(`http://localhost:5678/api/works/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type" : "application/json",
@@ -249,40 +249,24 @@ async function deleteWork(id){
 
         if (response.ok === true){
 
-            console.log("La requête a bien été envoyé, je supprime alors du DOM le projet n° " + id + photoModalToDelete)
+            console.log("La requête a bien été envoyée, je supprime alors du DOM le projet n° " + id + photoModalToDelete)
 
             const works = await getData();
             
             console.log(works);
-            
-            /* Ici on a bien la réponse, mais le console log renvoie les 11 projets. 
-            Donc estime que la requête fetch est correcte, mais ne supprime pas pour autant 
-            le projet sélectionné du serveur... Donc je renvoie les 11 projets, et non plus 
-            les 10, ou les 9... */
-
-            
-                            // // Permet d'effacer les travaux précédemment affichés
-                            // document.querySelector(".modal-wrapper-photos").innerHTML = "";
-                            // // Puis on relance l'affichage des projets : 
-                            // displayModalPictures (works) // > est ce qu'on laisse works ? 
-                            
-                            // // Page d'accueil
-                            // document.querySelector(".gallery").innerHTML = "";
-                            // // Puis on affiche uniquement les travaux existant après suppression
-                            // displayWorks(works);
-            
-            // // Suppression du projet de la MODALE et de l'ACCUEIL
-            // // Mais ne supprime pas les projets coté serveur, 
-            // // Donc les 11 projets réapparaissent lorsqu'on recharge la page
+        
+            //Suppression des photos dans modale et page d'accueil
             photoModalToDelete.remove();
             projetAccueilToDelete.remove();
 
         } 
+
         else {
             console.log("Erreur lors de la suppression du projet")
         }
 
     }
+
     catch{
         console.log("Erreur de la requête DELETE à l'API");
     }    
@@ -292,6 +276,7 @@ async function deleteWork(id){
 
 // AJOUT D'UN PROJET 
 // ------------------
+
 
 // AFFICHAGE MINIATURE PHOTO A AJOUTER
 
@@ -341,11 +326,23 @@ fileInput.addEventListener("change", function (){
     //else{ } ?
 
 })
+
+
 /* 
     
-    5 - AJOUT DE PROJET : modale ajout de projet : 
-        _ apparition de la miniature de la photo sélectionnée
-        _ modification du bouton "valider" lorsque tous les champs
-        du formulaire sont renseigner : bloquer l'envoi sinon et changement
-        de la couleur
+    
+
+   2/ Ajouter EventListener sur bouton du formulaire (click, async function (event)) 
+
+        if (tous les champs n'ont pas été renseignés) :
+            1 - bouton validier gris
+            2- message d'erreur indiquant les champs à remplir)
+        
+        else (si tous les champs sont renseignés) :
+            1 - changement couleur bouton valider
+            2 - récupérer les catégories == afilier un n° selon selection
+            3 - requete api
+  
+    Ajouter une fonction permettant d'initialiser le formulaire de la modale 2 lorsqu'on retourne en arrière ou qu'on ferme la fenetre modale.        
+
 */
