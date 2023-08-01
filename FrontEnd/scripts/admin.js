@@ -277,8 +277,8 @@ async function deleteWork(id){
 // AJOUT D'UN PROJET 
 // ------------------
 
-
-// AFFICHAGE MINIATURE PHOTO A AJOUTER
+    // AFFICHAGE MINIATURE PHOTO A AJOUTER
+    // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
 
 // On stocke la Div Selection de fichier
 const selectPhotoDiv = document.getElementById("select-photo");
@@ -325,43 +325,66 @@ fileInput.addEventListener("change", function (){
 
 })
 
-// FORMULAIRE INCOMPLET : Message d'Erreur
-// FORMULAIRE COMPLET : changement couleur bouton validation
+    // MODIFICATION DU BOUTON "VALIDER" SI FORMULAIRE COMPLET
+    // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
 
+// Stocke les éléments du formulaire
+const formAddPhoto = document.querySelector(".form-add-photo");
 const titleInput = document.getElementById("title-photo");
 const categoryOption = document.getElementById("category-projet");
 const buttonForm = document.getElementById("invalid-button");
+const divErrorForm = document.getElementById("error-form");
 
 function validateForm() {
 
     if (titleInput.value !== "" && fileInput.files.length > 0) {
-        console.log("Le formulaire est complet")
+        console.log("Le formulaire est complet");
+        buttonForm.setAttribute("id", "valid-button");
+        //Suppression message erreur formulaire incomplet si affiché
+        divErrorForm.style.display = "none";
+
     } else {
-        console.log("Le formulaire est incomplet ! Veuillez renseigner tous les champs")
+        console.log("Le formulaire est incomplet ! Veuillez renseigner tous les champs");
+        buttonForm.setAttribute("id", "invalid-button");
     }
 }
 
-titleInput.addEventListener("input", validateForm);
+// Ajout des EventListener à chaque modification des champs file et title avec
+// Appel de la function validateForm
 fileInput.addEventListener("change", validateForm);
+titleInput.addEventListener("input", validateForm);
 
-  
-// ENVOI FORMULAIRE ET PUBLICATION NOUVEAU PROJET
+
+    // ENVOI FORMULAIRE (event SUBMIT) : AJOUT PROJET OU MESSAGE ERREUR
+    // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
+
+formAddPhoto.addEventListener("submit", function (event){
+
+    event.preventDefault();
+
+    if (titleInput.value !== "" && fileInput.files.length > 0) {
+
+        console.log("je publie le nouveau projet")
+
+        // Lancer l'appel à l'API
+
+    } else {
+
+       console.log("J'ai cliqué sur le bouton mais formulaire incomplet")
+       
+       // Affichage message d'erreur formulaire incomplet
+       divErrorForm.style.display = "flex";
+       
+
+    }
+
+})
+
+
 
 /* 
-    
-    
-
-   2/ Ajouter EventListener sur bouton du formulaire (click, async function (event)) 
-
-        if (tous les champs n'ont pas été renseignés) :
-            1 - bouton validier gris
-            2- message d'erreur indiquant les champs à remplir)
-        
-        else (si tous les champs sont renseignés) :
-            1 - changement couleur bouton valider
+        si tous les champs sont renseignés) :
             2 - récupérer les catégories == afilier un n° selon selection
             3 - requete api
-  
-
-
+            
 */

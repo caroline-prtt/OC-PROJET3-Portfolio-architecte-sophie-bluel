@@ -677,3 +677,11 @@ input[type="text"]{
 	object-fit: contain;
 	max-width: 100%;
 }
+
+/* Message d'erreur formulaire ajout photo incomplet */
+
+#error-form{
+	justify-content: center;
+	padding-top: 10px;
+	color : red;
+}

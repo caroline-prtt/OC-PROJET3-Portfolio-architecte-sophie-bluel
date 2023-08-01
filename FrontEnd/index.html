@@ -125,14 +125,14 @@
 								<div id="select-photo">
 									<i class="fa-regular fa-image" style="color: #cbd6dc;"></i>
 									<label for="file-upload">+ Ajouter photo</label>
-									<input  type="file" id="file-upload" name="file-upload" accept=".jpg, .jpeg, .png" required>
+									<input  type="file" id="file-upload" name="file-upload" accept=".jpg, .jpeg, .png">
 									<p>jpg, png : 4mo max</p>
 								</div>
 								<div id="preview-photo"></div>
 							</fieldset>
 							<fieldset class="wrapper-title-category">
 								<label for="title-photo">Titre</label>
-								<input type="text" id="title-photo" name="title-photo" required>
+								<input type="text" id="title-photo" name="title-photo">
 								<label for="category-projet">Catégorie</label>
 								<select name="category-projet" id="category-projet">
 									<option value="objet">Objet</option>
@@ -140,6 +140,7 @@
 									<option value="hotel">Hôtel & Restaurant</option>
 								</select>
 							</fieldset>
+							<div id="error-form" style="display: none;">Veuillez renseigner tous les champs.</div>
 							<button id="invalid-button">Valider</button>
 						</form>
 					</div>
