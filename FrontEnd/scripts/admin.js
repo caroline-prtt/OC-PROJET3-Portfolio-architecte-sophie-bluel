@@ -323,10 +323,29 @@ fileInput.addEventListener("change", function (){
         reader.readAsDataURL(fileSelected);
     }
 
-    //else{ } ?
-
 })
 
+// FORMULAIRE INCOMPLET : Message d'Erreur
+// FORMULAIRE COMPLET : changement couleur bouton validation
+
+const titleInput = document.getElementById("title-photo");
+const categoryOption = document.getElementById("category-projet");
+const buttonForm = document.getElementById("invalid-button");
+
+function validateForm() {
+
+    if (titleInput.value !== "" && fileInput.files.length > 0) {
+        console.log("Le formulaire est complet")
+    } else {
+        console.log("Le formulaire est incomplet ! Veuillez renseigner tous les champs")
+    }
+}
+
+titleInput.addEventListener("input", validateForm);
+fileInput.addEventListener("change", validateForm);
+
+  
+// ENVOI FORMULAIRE ET PUBLICATION NOUVEAU PROJET
 
 /* 
     
@@ -343,6 +362,6 @@ fileInput.addEventListener("change", function (){
             2 - récupérer les catégories == afilier un n° selon selection
             3 - requete api
   
-    Ajouter une fonction permettant d'initialiser le formulaire de la modale 2 lorsqu'on retourne en arrière ou qu'on ferme la fenetre modale.        
+
 
 */
