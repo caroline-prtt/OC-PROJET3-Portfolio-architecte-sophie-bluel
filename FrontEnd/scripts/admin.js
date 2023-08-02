@@ -73,6 +73,7 @@ function openModal(event, target){
         modal1.style.display = null;
         modal1.setAttribute("aria-hidden", "false");
         modal2.style.display = "none";
+        resetForm(); // Réinitialise formulaire modale 2 lorsqu'on revient sur modale 1
     } else {
         modal1.style.display = "none";
         modal2.style.display = null;
@@ -106,6 +107,8 @@ function closeModal(event){
     modal1.setAttribute("aria-hidden", "true");
     modal2.style.display = "none";
     modal2.setAttribute("aria-hidden", "true")
+
+    resetForm(); // Réinitialise formulaire modale 2 lorsqu'on ferme la modale 2
 }
 
 // Pour chaque icone (i) exécute un Listener : au clic > appelle closeModal
@@ -432,8 +435,14 @@ formAddPhoto.addEventListener("submit", async function (event){
 
 })
 
+// Ajout d'une fonction reset permettant de réinitialiser le formulaire
+// d'ajout de projet à chaque fermeture de la modale 2
 
-
-/*          
-        Voir pour un reset des champs du formulaire si ferme la modale sans valider
-*/
+function resetForm() {
+    fileInput.value = ""; // Réinitialiser le champ de sélection de fichier
+    titleInput.value = ""; // Réinitialiser le champ de titre
+    categoryProjet.value = "objet"; // Réinitialiser le champ de catégorie
+    previewPhotoDiv.innerHTML = ""; // Effacer l'aperçu de la miniature
+    selectPhotoDiv.style.display = "flex"; // Réafficher la div pour la sélection de photo
+    validateForm(); // Mettre à jour le bouton "Valider" selon l'état du formulaire réinitialisé
+}
