@@ -11,12 +11,15 @@ async function getData(){
 // FONCTION POUR L'AFFICHAGE DES TRAVAUX SUR LA PAGE
 // *************************************************
 
+// récupère l'élément du DOM qui accueillera les travaux
+const divGallery = document.querySelector(".gallery");
+
 function displayWorks (works){
 
     for (let i = 0; i < works.length; i++) {
 
-        // récupère l'élément du DOM qui accueillera les travaux
-        const divGallery = document.querySelector(".gallery");
+        // // récupère l'élément du DOM qui accueillera les travaux
+        // const divGallery = document.querySelector(".gallery");
 
         // On créé la balise dédié à une fiche travaux
         const workElement = document.createElement("figure");

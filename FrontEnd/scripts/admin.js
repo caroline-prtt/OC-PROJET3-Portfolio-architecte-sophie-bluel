@@ -149,6 +149,9 @@ modal2.querySelector(".modal-stop-propagation").addEventListener("click", functi
 // APPARITION DES MINIATURES DES PROJETS DANS MODALE 1
 // --------------------------------------------------
 
+// récupère l'élément du DOM qui accueillera les travaux
+const divModalPictures = document.querySelector(".modal-wrapper-photos");
+
 // On déclare la fonction qui créé les miniatures 
 
 function displayModalPictures (works){
@@ -156,9 +159,6 @@ function displayModalPictures (works){
     console.log(works);
 
     for (let i = 0; i < works.length; i++) {
-
-        // récupère l'élément du DOM qui accueillera les travaux
-        const divModalPictures = document.querySelector(".modal-wrapper-photos");
 
         // On créé la balise dédié à une fiche travaux
         const workElement = document.createElement("figure");
@@ -328,10 +328,10 @@ fileInput.addEventListener("change", function (){
     // MODIFICATION DU BOUTON "VALIDER" SI FORMULAIRE COMPLET
     // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
 
-// Stocke les éléments du formulaire
+// Stocke les éléments du DOM
 const formAddPhoto = document.querySelector(".form-add-photo");
 const titleInput = document.getElementById("title-photo");
-const categoryOption = document.getElementById("category-projet");
+const categoryProjet = document.getElementById("category-projet");
 const buttonForm = document.getElementById("invalid-button");
 const divErrorForm = document.getElementById("error-form");
 
@@ -344,7 +344,7 @@ function validateForm() {
         divErrorForm.style.display = "none";
 
     } else {
-        console.log("Le formulaire est incomplet ! Veuillez renseigner tous les champs");
+        //Formulaire incomplet
         buttonForm.setAttribute("id", "invalid-button");
     }
 }
@@ -355,36 +355,85 @@ fileInput.addEventListener("change", validateForm);
 titleInput.addEventListener("input", validateForm);
 
 
-    // ENVOI FORMULAIRE (event SUBMIT) : AJOUT PROJET OU MESSAGE ERREUR
+    // ENVOI FORMULAIRE (event SUBMIT) > AJOUT PROJET OU MESSAGE ERREUR
     // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
 
-formAddPhoto.addEventListener("submit", function (event){
+formAddPhoto.addEventListener("submit", async function (event){
 
     event.preventDefault();
 
+    // On récupère la catégorie sélectionnée : 
+    const categoryOption = categoryProjet.value;
+    // Puis on attribue un id particulier à la catégorie : 
+    let categoryId ;
+    if (categoryOption === "objet"){
+        categoryId = 1;
+    } else if (categoryOption === "appartement"){
+        categoryId = 2;
+    } else if (categoryOption === "hotel-restaurant"){
+        categoryId = 3;
+    }
+    
+    console.log("nom catégorie sélectionnée : " + categoryOption);
+    console.log("catégorie ayant l'id n° " + categoryId)
+    
+    // Puis on regarde si le formulaire est complet ou non
+
     if (titleInput.value !== "" && fileInput.files.length > 0) {
 
-        console.log("je publie le nouveau projet")
+        console.log("je publie le nouveau projet");
+    
+        // Création de l'objet FormData à partir du formulaire HTML
+        const newProjetData = new FormData();
+            newProjetData.append("image", fileInput.files[0]);
+            newProjetData.append("title", titleInput.value);
+            newProjetData.append("category", categoryId);
 
-        // Lancer l'appel à l'API
+            // console.log("image : " + newProjetData.get("image"));
+            // console.log("title : " + newProjetData.get("title"));
+            // console.log("category : " + newProjetData.get("category"));
+
+        try{
+
+            const response = await fetch ("http://localhost:5678/api/works", {
+                method: "POST",
+                headers: {
+                    // Aucun besoin de spécifier le Content-Type, FormData le gère automatiquement
+                    "Authorization" : "Bearer " + token
+                },
+                body: newProjetData
+            });
+
+            if (response.ok){
+                console.log("Ajout du projet avec succès");
+                const NewProjet = await response.json();
+            //Renvoie sur la modale 1 automatiquement après clic
+                openModal(event, modal1);
+            // Puis on regénère l'apparition des miniatures sur la modale 1
+                divModalPictures.innerHTML = "";
+                modalPictures();
+            // Idem pour les projets en page d'accueil :
+                divGallery.innerHTML = "";
+                portfolio();
+            } else {
+                console.log("L'ajout du projet a échoué !");
+            }
+        }
+
+        catch{
+            console.log("erreur lors de l'envoi de la requête POST")
+        }
 
     } else {
-
        console.log("J'ai cliqué sur le bouton mais formulaire incomplet")
-       
        // Affichage message d'erreur formulaire incomplet
        divErrorForm.style.display = "flex";
-       
-
     }
 
 })
 
 
 
-/* 
-        si tous les champs sont renseignés) :
-            2 - récupérer les catégories == afilier un n° selon selection
-            3 - requete api
-            
+/*          
+        Voir pour un reset des champs du formulaire si ferme la modale sans valider
 */
