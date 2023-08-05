@@ -7,21 +7,17 @@ async function getData(){
     return data;
 }
 
-
 // FONCTION POUR L'AFFICHAGE DES TRAVAUX SUR LA PAGE
 // *************************************************
 
 // récupère l'élément du DOM qui accueillera les travaux
-const divGallery = document.querySelector(".gallery");
+const divGallery = document.getElementById("gallery");
 
 function displayWorks (works){
 
     for (let i = 0; i < works.length; i++) {
 
-        // // récupère l'élément du DOM qui accueillera les travaux
-        // const divGallery = document.querySelector(".gallery");
-
-        // On créé la balise dédié à une fiche travaux
+        // On créé la balise dédiée à une fiche travaux
         const workElement = document.createElement("figure");
         // On créé un id spécifique pour chaque balise figure (pour gérer suppression de l'élément)
         workElement.setAttribute("id", "accueil-projet"+works[i].id);
@@ -41,14 +37,13 @@ function displayWorks (works){
     }
 }
 
-
 // FONCTION GÉNÉRALE DE FILTRAGE DES TRAVAUX SELON CATEGORIE
 // *********************************************************
 
 function filteringWorks(buttonSelector, numcategoryId) {
 
     // selectionne l'élément du DOM
-    const filterButton = document.querySelector(buttonSelector);
+    const filterButton = document.getElementById(buttonSelector);
 
     // Géstion de l'événement lors du click sur bouton filtre
     filterButton.addEventListener("click", async function () {
@@ -58,17 +53,17 @@ function filteringWorks(buttonSelector, numcategoryId) {
             return work.categoryId === numcategoryId;
         });
         // Permet d'effacer les travaux précédemment affichés
-        document.querySelector(".gallery").innerHTML = "";
+        document.getElementById("gallery").innerHTML = "";
         // Puis on affiche uniquement les travaux filtrés
         displayWorks(filteredWorks);
     });
 }
 
-
 // FONCTION POUR GÉNÉRER LES TRAVAUX PAR DÉFAUT ET LES TRAVAUX FILTRÉS
 // *******************************************************************
 
 // 1 - Déclaration de la fonction
+// -------------------------------
 
 async function portfolio() {
 
@@ -79,18 +74,19 @@ async function portfolio() {
     displayWorks(works);
 
     // Filtrage des travaux lors du "click" pour chaque filtre
-    filteringWorks("#filter-objets", 1); // Filtre objets
-    filteringWorks("#filter-appartements", 2); // Filtre appartements
-    filteringWorks("#filter-hotels", 3); // Filtre hotels & restaurants
+    filteringWorks("filter-objets", 1); // Filtre objets
+    filteringWorks("filter-appartements", 2); // Filtre appartements
+    filteringWorks("filter-hotels", 3); // Filtre hotels & restaurants
 
     // Filtre tous
-    const filterTous = document.querySelector("#filter-tous");
+    const filterTous = document.getElementById("filter-tous");
     filterTous.addEventListener("click", function () {
-      document.querySelector(".gallery").innerHTML = "";
+        document.getElementById("gallery").innerHTML = "";
       displayWorks(works); // Afficher tous les travaux lorsque "Tous" est cliqué
     });
 }
 
 // 2- Appel de la fonction
+// -----------------------
 
 portfolio();

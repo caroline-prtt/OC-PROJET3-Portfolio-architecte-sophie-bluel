@@ -24,7 +24,7 @@ if(token !== null){
     // Modification class barre édition > pour apparition
     modifyClassElementDOM(".hidden-bar-edit", "bar-edit", "hidden-bar-edit");
     
-    // Modification class bouton "modifer" de introduction > pour apparition
+    // Modification class bouton "modifier" de l'introduction > pour apparition
     modifyClassElementDOM(".hidden-edit-button-intro", "edit-button-intro", "hidden-edit-button-intro");
 
     // Modification class bouton "modifier" des projets > pour apparition
@@ -285,15 +285,12 @@ async function deleteWork(id){
 
 // On stocke la Div Selection de fichier
 const selectPhotoDiv = document.getElementById("select-photo");
-
 // On stocke la div qui contiendra la miniature 
 const previewPhotoDiv = document.getElementById("preview-photo");
-
 // On stocke l'input selection fichier
 const fileInput = document.getElementById("file-upload");
 
 // On ajoute un EventListener CHANGE à cet input (>écoute le changement de valeur)
-
 fileInput.addEventListener("change", function (){
     
     /* on stocke le fichier sélectionné (OBJET): on accède à la propriété files de l'input
@@ -325,7 +322,6 @@ fileInput.addEventListener("change", function (){
         pour lire le contenu du fichier sous la forme d'une URL de données*/
         reader.readAsDataURL(fileSelected);
     }
-
 })
 
     // MODIFICATION DU BOUTON "VALIDER" SI FORMULAIRE COMPLET
@@ -376,32 +372,25 @@ formAddPhoto.addEventListener("submit", async function (event){
     } else if (categoryOption === "hotel-restaurant"){
         categoryId = 3;
     }
-    
-    console.log("nom catégorie sélectionnée : " + categoryOption);
-    console.log("catégorie ayant l'id n° " + categoryId)
+        // console.log("nom catégorie sélectionnée : " + categoryOption);
+        // console.log("catégorie ayant l'id n° " + categoryId)
     
     // Puis on regarde si le formulaire est complet ou non
-
     if (titleInput.value !== "" && fileInput.files.length > 0) {
 
-        console.log("je publie le nouveau projet");
-    
         // Création de l'objet FormData à partir du formulaire HTML
         const newProjetData = new FormData();
             newProjetData.append("image", fileInput.files[0]);
             newProjetData.append("title", titleInput.value);
             newProjetData.append("category", categoryId);
-
-            // console.log("image : " + newProjetData.get("image"));
-            // console.log("title : " + newProjetData.get("title"));
-            // console.log("category : " + newProjetData.get("category"));
+                // console.log("image : " + newProjetData.get("image"));
+                // console.log("title : " + newProjetData.get("title"));
+                // console.log("category : " + newProjetData.get("category"));
 
         try{
-
             const response = await fetch ("http://localhost:5678/api/works", {
                 method: "POST",
-                headers: {
-                    // Aucun besoin de spécifier le Content-Type, FormData le gère automatiquement
+                headers: { // Aucun besoin de spécifier le Content-Type, FormData le gère automatiquement
                     "Authorization" : "Bearer " + token
                 },
                 body: newProjetData
@@ -422,7 +411,6 @@ formAddPhoto.addEventListener("submit", async function (event){
                 console.log("L'ajout du projet a échoué !");
             }
         }
-
         catch{
             console.log("erreur lors de l'envoi de la requête POST")
         }
@@ -432,10 +420,9 @@ formAddPhoto.addEventListener("submit", async function (event){
        // Affichage message d'erreur formulaire incomplet
        divErrorForm.style.display = "flex";
     }
-
 })
 
-// Ajout d'une fonction reset permettant de réinitialiser le formulaire
+// Ajout d'une fonction "reset" permettant de réinitialiser le formulaire
 // d'ajout de projet à chaque fermeture de la modale 2
 
 function resetForm() {
