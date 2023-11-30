@@ -2,8 +2,6 @@
 
 ### Projet n°3 OpenClassrooms : Portolio de l'architecte Sophie Bluel
 
-http
-
 ## Le scénario
 
 Sophie Bluel, architecte d'intérieur, souhaite concevoir son site portfolio.
@@ -21,10 +19,18 @@ Dans le répertoire back-end/
 
 1. Installer les dépendances du projet en passant la commande : 
 ```
-   npm install
+npm install
 ```
 
 2. Lancer le projet avec la commande :
 ```
-   npm start
+npm start
+```
+
+### Compte test administrateur
+
+Le compte administrateur de test pour Sophie Bluel est : 
+```
+email: sophie.bluel@test.tld
+password: S0phie
 ```
